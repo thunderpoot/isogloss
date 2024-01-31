@@ -1,0 +1,56 @@
+.TH ISOGLOSS 1 "31 January 2024" "isogloss version 1.0" "User Manuals"
+.SH NAME
+isogloss \- ISO 639 and IETF Language Code Lookup Tool
+.SH SYNOPSIS
+.B isogloss
+[OPTIONS]
+.SH DESCRIPTION
+isogloss is a command-line tool for looking up details about languages based on ISO 639 codes and IETF language tags. It provides information about the language name, native name, and other details associated with a given ISO code or IETF tag.
+
+.SH OPTIONS
+.TP
+.BR -c ", " --code " " \fIcode\fR
+Lookup by ISO 639-1, 639-2/B, 639-2/T, or 639-3 code. The code should be a valid ISO 639 code.
+
+.TP
+.BR -n ", " --name " " \fIname\fR
+Lookup by language name. The name should be the full or partial name of a language.
+
+.TP
+.BR -i ", " --ietf " " \fItag\fR
+Lookup by IETF language tag (e.g., en-GB, en-US). The tag should be a valid IETF language tag.
+
+.SH EXAMPLES
+To look up information about the language with the ISO 639 code 'swe':
+.PP
+\fBisogloss -c swe\fR
+
+To look up information about English as used in the United States:
+.PP
+\fBisogloss -i en-us\fR
+
+To search for a language by name:
+.PP
+\fBisogloss -n English\fR
+
+.SH FILES
+.TP
+.B consolidated_langs.json
+Contains language data in JSON format used for the lookup.
+
+.TP
+.B region_names.json
+Contains region data in JSON format used for the IETF tag lookup.
+
+.SH AUTHOR
+Written by T E Vaughan
+
+.SH LICENCE
+This project is MIT licensed. See https://opensource.org/licenses/MIT for more information.
+
+.SH STANDARDS
+Language codes conform to the ISO 639 standard, and country codes conform to the ISO 3166-1 alpha-2 standard.
+
+.SH "SEE ALSO"
+.BR json (5),
+.BR argparse (1)
