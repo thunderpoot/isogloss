@@ -35,6 +35,30 @@ To look up information by language name:
 ./isogloss.py -n [language name]
 ```
 
+Example of lookup via native name:
+
+```
+./isogloss.py -n 日本語
+{
+    "\u65e5\u672c\u8a9e Nihongo": "jpn"
+}
+```
+
+Example of multiple results being found:
+
+```
+./isogloss.py -n norwegian
+{
+    "Norwegian Nynorsk": "nno",
+    "Nynorsk, Norwegian": "nno",
+    "Bokm\u00e5l, Norwegian": "nob",
+    "Norwegian Bokm\u00e5l": "nob",
+    "Norwegian": "nor",
+    "Norwegian Sign Language": "nsl",
+    "Traveller Norwegian": "rmg"
+}
+```
+
 To look up information by IETF language tag:
 
 ```bash
@@ -60,6 +84,9 @@ Contributions, issues, and feature requests are welcome!
 ## Author
 
 Written by T E Vaughan
+
+## Standards
+Language codes conform to the [ISO 639](https://www.iso.org/iso-639-language-code) standard (introduced in [RFC 4646](https://datatracker.ietf.org/doc/html/rfc4646.html)), and country codes conform to the [ISO 3166-1 alpha-2](https://www.iso.org/iso-3166-country-codes.html) standard (first defined in [RFC 1766](https://www.ietf.org/rfc/rfc1766.txt)).
 
 ## License
 
