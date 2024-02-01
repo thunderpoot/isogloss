@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 Isogloss: A program to lookup languaes by ISO639 code or by IETF tag.
 """
@@ -7,6 +5,7 @@ Isogloss: A program to lookup languaes by ISO639 code or by IETF tag.
 import argparse
 import json
 import os
+import sys
 
 from unidecode import unidecode
 
