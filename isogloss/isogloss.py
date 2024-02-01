@@ -6,9 +6,15 @@ Isogloss: A program to lookup languaes by ISO639 code or by IETF tag.
 
 import argparse
 import json
+import os
 
-def load_json_data(file_path):
-    """Load JSON data from a file."""
+from unidecode import unidecode
+
+def load_json_data(file_name):
+    """Load JSON data from a file located in the 'data' directory."""
+    dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+    file_path = os.path.join(dir_path, 'data', file_name)
+
     with open(file_path, 'r', encoding='utf-8') as file:
         return json.load(file)
 
@@ -55,8 +61,10 @@ def lookup_ietf_locale(tag, lang_data, region_data):
 def search_in_dictionary(search_term, data):
     """Search for 'search_term' in 'data' dictionary."""
     results = {}
+    normalized_search_term = unidecode(search_term).lower()
     for key, value in data.items():
-        if search_term.lower() in key.lower():
+        normalized_key = unidecode(key).lower()
+        if normalized_search_term in normalized_key:
             results[key] = value
     return results
 

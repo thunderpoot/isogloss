@@ -1,14 +1,18 @@
-# Isogloss
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+
+# 🗺️ isogloss
 
 ### ISO 639 and IETF Language Code Lookup Tool
 
-`isogloss` is a Python-based command-line tool designed for looking up language details based on ISO 639 codes and IETF language tags. It provides comprehensive information about languages, including their names, native names, and additional details associated with each code or tag.
+`isogloss` is a Python-based command-line tool designed for looking up language details based on [ISO 639](https://www.iso.org/iso-639-language-code) codes and IETF ([BCP-47](https://www.rfc-editor.org/info/bcp47)) language tags. It provides comprehensive information about languages, including their names, native names, and additional details associated with each code or tag.
+
+<sub>_Elsewhere, [the word isogloss](https://en.wikipedia.org/wiki/Isogloss) means a boundary line on a map denoting the regional use of a particular linguistic characteristic, but in this case it just seemed to fit._</sub>
 
 ## Features
 
 - Lookup language details using ISO 639-1, 639-2/B, 639-2/T, or 639-3 codes.
 - Lookup language details by language name.
-- Lookup language details using IETF language tags (e.g., en-GB, en-US).
+- Lookup language details using IETF BCP-47 language tags (e.g., en-GB, en-US, sv-SE).
 
 ## Installation
 
@@ -16,7 +20,6 @@ Clone the repository to your local machine:
 
 ```
 git clone https://github.com/thunderpoot/isogloss.git
-cd isogloss
 ```
 
 ## Usage
@@ -25,20 +28,35 @@ The script can be run directly from the command line. Below are some examples of
 
 To look up information by ISO 639 code:
 
-```bash
-./isogloss.py -c [code]
+```
+$ isogloss -c swe
+{
+  "639-1": "sv",
+  "Scope": "Individual",
+  "Type": "Living",
+  "Native name(s)": "svenska",
+  "Other name(s)": "",
+  "639-2/T": "swe",
+  "639-2/B": "",
+  "639-5": "",
+  "639-3": "swe",
+  "Name(s)": "Swedish"
+}
 ```
 
 To look up information by language name:
 
-```bash
-./isogloss.py -n [language name]
+```
+$ isogloss -n "egyptian arabic"
+{
+    "Egyptian Arabic": "arz"
+}
 ```
 
 Example of lookup via native name:
 
 ```
-./isogloss.py -n 日本語
+$ isogloss -n 日本語
 {
     "\u65e5\u672c\u8a9e Nihongo": "jpn"
 }
@@ -47,7 +65,7 @@ Example of lookup via native name:
 Example of multiple results being found:
 
 ```
-./isogloss.py -n norwegian
+$ isogloss -n norwegian
 {
     "Norwegian Nynorsk": "nno",
     "Nynorsk, Norwegian": "nno",
@@ -59,23 +77,48 @@ Example of multiple results being found:
 }
 ```
 
+Language names are normalised, allowing for case-insensitive and accent-insensitive matching when searching:
+
+```
+$ isogloss -n espanol
+{
+    "Judeo-espa\u00f1ol": "lad",
+    "espa\u00f1ol": "spa"
+}
+```
+
 To look up information by IETF language tag:
 
-```bash
-./isogloss.py -i [ietf tag]
+```
+$ isogloss -i fr-FR
+{
+    "Language": {
+        "639-1": "fr",
+        "Scope": "Individual",
+        "Type": "Living",
+        "Native name(s)": "fran\u00e7ais",
+        "Other name(s)": "",
+        "639-2/T": "fra",
+        "639-2/B": "fre",
+        "639-5": "",
+        "639-3": "fra",
+        "Name(s)": "French"
+    },
+    "Region": "France"
+}
 ```
 
 For help, refer to the manfile:
 
-```bash
-man ./isogloss.1
+```
+man isogloss
 ```
 
 
 ## Files
 
-- `consolidated_langs.json`: Contains language data in JSON format used for the lookup.
-- `region_names.json`: Contains region data in JSON format used for the IETF tag lookup.
+- `data/consolidated_langs.json`: Contains language data in JSON format used for the lookup.
+- `data/region_names.json`: Contains region data in JSON format used for the IETF tag lookup.
 
 ## Contributing
 
