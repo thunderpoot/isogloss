@@ -1,0 +1,5 @@
+.DS_Store
+*/.DS_Store
+misc/
+venv/
+*/__pycache__/
