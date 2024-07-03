@@ -6,9 +6,25 @@ async function fetchLanguages() {
         languages = await response.json();
         console.log('Languages data loaded:', languages);
         updateDatalist();
+
+        const { lookupType, language } = getURLParams();
+        if (lookupType) {
+            document.getElementById('lookupToggle').value = lookupType;
+        }
+        if (language) {
+            document.getElementById('lookupInput').value = language;
+            lookupLanguage();
+        }
     } catch (error) {
         console.error('Error fetching languages:', error);
     }
+}
+
+function getURLParams() {
+    const params = new URLSearchParams(window.location.search);
+    const lookupType = params.get('type');
+    const language = params.get('lang');
+    return { lookupType, language };
 }
 
 function toggleLookup() {
@@ -69,6 +85,9 @@ function lookupLanguage() {
     let resultText = 'Not found';
     let details = null;
 
+    const newUrl = `${window.location.pathname}?type=${lookupType}&lang=${input}`;
+    window.history.pushState({ path: newUrl }, '', newUrl);
+
     if (lookupType === 'name') {
         for (const [code, detailsObj] of Object.entries(languages.iso3)) {
             if ((detailsObj["Name(s)"] && detailsObj["Name(s)"].toLowerCase() === input) ||
@@ -108,6 +127,7 @@ function lookupLanguage() {
 
     document.getElementById('result').innerHTML = resultText;
 }
+
 async function fetchLatestCommit() {
     try {
         const response = await fetch('https://api.github.com/repos/thunderpoot/isogloss/commits');
@@ -129,6 +149,7 @@ async function fetchLatestCommit() {
         document.getElementById('commit-link').href = commitLink;
     } catch (error) {
         console.error('Error fetching latest commit:', error);
+        // probably rate–limiting
     }
 }
 
