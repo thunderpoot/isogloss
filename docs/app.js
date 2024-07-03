@@ -2,7 +2,7 @@ let languages;
 
 async function fetchLanguages() {
     try {
-        const response = await fetch('../data/consolidated_langs.json');
+        const response = await fetch('consolidated_langs.json');
         languages = await response.json();
         console.log('Languages data loaded:', languages);
         updateDatalist();
@@ -100,6 +100,9 @@ function lookupLanguage() {
                           <tr><th>639-2/B</th><td>${details["639-2/B"]}</td></tr>
                           <tr><th>639-2/T</th><td>${details["639-2/T"]}</td></tr>
                           <tr><th>639-3</th><td>${details["639-3"]}</td></tr>
+                          <tr><th>Deprecated</th><td>${details["Deprecated"]}</td></tr>
+                          <tr><th>Scope</th><td>${details["Scope"]}</td></tr>
+                          <tr><th>Type</th><td>${details["Type"]}</td></tr>
                       </table>`;
     }
 
