@@ -10,6 +10,7 @@ async function fetchLanguages() {
         const { lookupType, language } = getURLParams();
         if (lookupType) {
             document.getElementById('lookupToggle').value = lookupType;
+            updateDatalist();
         }
         if (language) {
             document.getElementById('lookupInput').value = language;
