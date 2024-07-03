@@ -22,6 +22,14 @@ Clone the repository to your local machine:
 git clone https://github.com/thunderpoot/isogloss.git
 ```
 
+Create a virtual environment and install requirements
+
+```
+python3.11 -m venv venv
+source venv/bin/activate
+pip install unidecode
+```
+
 ## Usage
 
 The script can be run directly from the command line. Below are some examples of how to use it:
@@ -29,7 +37,7 @@ The script can be run directly from the command line. Below are some examples of
 To look up information by ISO 639 code:
 
 ```
-$ isogloss -c swe
+$ isogloss/isogloss.py -c swe
 {
   "639-1": "sv",
   "Scope": "Individual",
@@ -47,7 +55,7 @@ $ isogloss -c swe
 To look up information by language name:
 
 ```
-$ isogloss -n "egyptian arabic"
+$ isogloss/isogloss.py -n "egyptian arabic"
 {
     "Egyptian Arabic": "arz"
 }
@@ -56,7 +64,7 @@ $ isogloss -n "egyptian arabic"
 Example of lookup via native name:
 
 ```
-$ isogloss -n 日本語
+$ isogloss/isogloss.py -n 日本語
 {
     "\u65e5\u672c\u8a9e Nihongo": "jpn"
 }
@@ -65,7 +73,7 @@ $ isogloss -n 日本語
 Example of multiple results being found:
 
 ```
-$ isogloss -n norwegian
+$ isogloss/isogloss.py -n norwegian
 {
     "Norwegian Nynorsk": "nno",
     "Nynorsk, Norwegian": "nno",
@@ -80,7 +88,7 @@ $ isogloss -n norwegian
 Language names are normalised, allowing for case-insensitive and accent-insensitive matching when searching:
 
 ```
-$ isogloss -n espanol
+$ isogloss/isogloss.py -n espanol
 {
     "Judeo-espa\u00f1ol": "lad",
     "espa\u00f1ol": "spa"
@@ -90,7 +98,7 @@ $ isogloss -n espanol
 To look up information by IETF language tag:
 
 ```
-$ isogloss -i fr-FR
+$ isogloss/isogloss.py -i fr-FR
 {
     "Language": {
         "639-1": "fr",
@@ -108,17 +116,11 @@ $ isogloss -i fr-FR
 }
 ```
 
-For help, refer to the manfile:
-
-```
-man isogloss
-```
-
-
 ## Files
 
 - `data/consolidated_langs.json`: Contains language data in JSON format used for the lookup.
 - `data/region_names.json`: Contains region data in JSON format used for the IETF tag lookup.
+- `data/deprecated-639-3.csv`: Contains deprecated ISO 639-3 codes in CSV format, for quick reference (not used in the code).
 
 ## Contributing
 
