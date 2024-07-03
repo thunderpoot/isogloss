@@ -61,12 +61,31 @@
         <footer class="footer">
             <div class="footer-content">
                 &copy; 2024 T E Vaughan |
-                <a rel="nofollow" id="commit-link" class="commit-link" target="_blank">Commit: <span id="commit-hash"></span></a> |
+                Commit: <a rel="nofollow" id="commit-link" class="commit-link" target="_blank"><span id="commit-hash"></span></a> |
                 <span><a rel="nofollow" href="https://github.com/thunderpoot/isogloss?tab=MIT-1-ov-file#readme" target="_blank">MIT Licence</a></span> |
                 <span><a rel="nofollow" href="https://www.iso.org/iso-639-language-code" target="_blank">ISO639</a></span> |
-                <span><a rel="nofollow" href="https://sil.org/" target="_blank">SIL</a></span>
+                <span><a rel="nofollow" href="https://sil.org/" target="_blank">SIL</a></span> |
+                <span id="dark-mode-toggle" class="dark-mode-toggle">Dark mode</span>
             </div>
         </footer>
+        <script>
+            const toggleButton = document.getElementById('dark-mode-toggle');
+            const darkModeText = `<span class="dark-mode-button">Dark mode</span>`;
+            const lightModeText = `<span class="dark-mode-button">Light mode</span>`;
+            toggleButton.innerHTML = darkModeText;
+
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark-mode');
+                toggleButton.innerHTML = lightModeText;
+            } else {
+                toggleButton.innerHTML = darkModeText;
+            }
+
+            toggleButton.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                toggleButton.innerHTML = document.body.classList.contains('dark-mode') ? lightModeText : darkModeText;
+            });
+        </script>
     </div>
     <script src="app.js" defer></script>
 </body>
