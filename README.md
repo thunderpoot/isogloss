@@ -1,10 +1,13 @@
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
-# 🗺️ isogloss
+# 🌐 iso·gloss
 
 ### ISO 639 and IETF Language Code Lookup Tool
 
-`isogloss` is a Python-based command-line tool designed for looking up language details based on [ISO 639](https://www.iso.org/iso-639-language-code) codes and IETF ([BCP-47](https://www.rfc-editor.org/info/bcp47)) language tags. It provides comprehensive information about languages, including their names, native names, and additional details associated with each code or tag.
+`isogloss` is a Python–based command–line tool designed for looking up language details based on [ISO 639](https://www.iso.org/iso-639-language-code) codes and IETF ([BCP-47](https://www.rfc-editor.org/info/bcp47)) language tags. It provides comprehensive information about languages, including their names, native names, and additional details associated with each code or tag.
+
+There is also a [web–based version here](https://thunderpoot.github.io/isogloss).
 
 <sub>_Elsewhere, [the word isogloss](https://en.wikipedia.org/wiki/Isogloss) means a boundary line on a map denoting the regional use of a particular linguistic characteristic, but in this case it just seemed to fit._</sub>
 
@@ -85,7 +88,7 @@ $ isogloss/isogloss.py -n norwegian
 }
 ```
 
-Language names are normalised, allowing for case-insensitive and accent-insensitive matching when searching:
+Language names are normalised, allowing for case–insensitive and accent–insensitive matching when searching:
 
 ```
 $ isogloss/isogloss.py -n espanol
