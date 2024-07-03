@@ -3,6 +3,8 @@
 
 # 🌐 iso·gloss
 
+![isogloss](isogloss.webp)
+
 ### ISO 639 and IETF Language Code Lookup Tool
 
 `isogloss` is a Python–based command–line tool designed for looking up language details based on [ISO 639](https://www.iso.org/iso-639-language-code) codes and IETF ([BCP-47](https://www.rfc-editor.org/info/bcp47)) language tags. It provides comprehensive information about languages, including their names, native names, and additional details associated with each code or tag.
