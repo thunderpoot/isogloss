@@ -52,7 +52,10 @@ function updateDatalist() {
                 names.add(details["Other name(s)"]);
             }
         }
-        for (const name of names) {
+
+        const sortedNames = Array.from(names).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+
+        for (const name of sortedNames) {
             const option = document.createElement('option');
             option.value = name.toLowerCase();
             option.textContent = name;
@@ -71,7 +74,10 @@ function updateDatalist() {
                 codes.add(code);
             }
         }
-        for (const code of codes) {
+
+        const sortedCodes = Array.from(codes).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+
+        for (const code of sortedCodes) {
             const option = document.createElement('option');
             option.value = code.toLowerCase();
             option.textContent = code;
