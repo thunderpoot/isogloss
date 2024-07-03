@@ -3,7 +3,7 @@
 
 # 🌐 iso·gloss
 
-![isogloss](isogloss.webp)
+![isogloss](isogloss.jpg)
 
 ### ISO 639 and IETF Language Code Lookup Tool
 
