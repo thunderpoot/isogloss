@@ -111,7 +111,7 @@ function lookupLanguage() {
     }
 
     if (details) {
-        const nameLink = `<a rel="nofollow" href="https://www.google.com/search?q=${encodeURIComponent(details["Name(s)"])}" target="_blank">${details["Name(s)"]}</a>`;
+        const nameLink = `<a rel="nofollow" href="https://www.google.com/search?q=language%3A+${encodeURIComponent(details["Name(s)"])}" target="_blank">${details["Name(s)"]}</a>`;
         resultText = `<table>
                           <tr><th>Name(s)</th><td>${nameLink}</td></tr>
                           <tr><th>Native name(s)</th><td>${details["Native name(s)"]}</td></tr>
