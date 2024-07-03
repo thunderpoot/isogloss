@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iso·gloss</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="definition">
+            <div class="word">🌐 iso·gloss</div>
+            <div class="pronunciation">/ˈaɪsəɡlɒs/</div>
+            <div class="pos">noun</div>
+            <div class="definition-text">1. A line on a dialect map marking the boundary between linguistic features.</div>
+            <div class="definition-text">2. Software for looking up languages by <code>ISO 639</code> codes.</div>
+        </div>
+        <p></p>
+        <div class="lookup-section">
+            <label for="lookupToggle">Lookup by:</label>
+            <select id="lookupToggle" onchange="toggleLookup()">
+                <option value="iso1">ISO 639-1</option>
+                <option value="iso2B">ISO 639-2/B</option>
+                <option value="iso2T">ISO 639-2/T</option>
+                <option value="iso3">ISO 639-3</option>
+                <option value="name">Name</option>
+            </select>
+            <label for="lookupInput">Enter Language:</label>
+            <select id="lookupInput" onchange="lookupLanguage()">
+                <option value="" disabled selected>Select a language</option>
+            </select>
+        </div>
+        <div id="result" class="result"></div>
+        <footer class="footer">
+            <div class="footer-content">
+                <a rel="nofollow" id="commit-link" class="commit-link" target="_blank">Commit: <span id="commit-hash"></span></a> |
+                <span><a rel="nofollow" href="https://github.com/thunderpoot/isogloss?tab=MIT-1-ov-file#readme" target="_blank">MIT Licence</a></span> |
+                <span><a rel="nofollow" href="https://iso639-3.sil.org/" target="_blank">SIL: ISO639-3</a></span>
+            </div>
+        </footer>
+    </div>
+    <script src="app.js" defer></script>
+</body>
+</html>

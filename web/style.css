@@ -1,0 +1,124 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    padding: 20px;
+    margin: 0;
+}
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 50px;
+}
+.lookup-section {
+    margin-bottom: 20px;
+}
+.result {
+    margin-top: 20px;
+    font-weight: bold;
+}
+.result pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+th {
+    background-color: #f7fafc;
+    font-weight: bold;
+}
+td {
+    font-weight: normal;
+}
+th:first-child, td:first-child {
+    width: 30%;
+}
+th:last-child, td:last-child {
+    width: 70%;
+}
+.definition {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.word {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+.pronunciation {
+    font-style: italic;
+    color: #555;
+    margin-top: 5px;
+}
+.pos {
+    font-style: italic;
+    color: #888;
+    margin-top: 5px;
+}
+.definition-text {
+    margin-top: 15px;
+    font-size: 18px;
+}
+code {
+    padding: 2px;
+    font-size: 16px;
+}
+label, select {
+    font-size: 16px;
+    margin-right: 10px;
+}
+select {
+    width: 200px;
+}
+.footer {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 800px;
+}
+.footer-content {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+    gap: 5px;
+}
+a {
+    /* font-size: 14px; */
+    color: #2d5d9a;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
