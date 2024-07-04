@@ -11,13 +11,14 @@
 
 There is also a [web–based version here](https://thunderpoot.github.io/isogloss).
 
-<sub>_Elsewhere, [the word isogloss](https://en.wikipedia.org/wiki/Isogloss) means a boundary line on a map denoting the regional use of a particular linguistic characteristic, but in this case it just seemed to fit._</sub>
+Elsewhere, [the word isogloss](https://en.wikipedia.org/wiki/Isogloss) means a boundary line on a map denoting the regional use of a particular linguistic characteristic, but in this case it just seemed to fit.
 
 ## Features
 
 - Lookup language details using ISO 639-1, 639-2/B, 639-2/T, or 639-3 codes.
 - Lookup language details by language name.
-- Lookup language details using IETF BCP-47 language tags (e.g., en-GB, en-US, sv-SE, zh-cmn-Hans-CN-pinyin-ud1-p9t4-x-private1 and so on).
+- Lookup language details using IETF BCP-47 language tags
+    - Examples: `en-GB`, `en-US`, `sv-SE`, `zh-cmn-Hans-CN-pinyin-ud1-p9t4-x-private1`, and so on.
 
 ## Installation
 
@@ -51,7 +52,6 @@ $ isogloss/isogloss.py -c swe
   "Other name(s)": "",
   "639-2/T": "swe",
   "639-2/B": "",
-  "639-5": "",
   "639-3": "swe",
   "Name(s)": "Swedish"
 }
@@ -113,7 +113,6 @@ $ isogloss/isogloss.py -i fr-FR
         "Other name(s)": "",
         "639-2/T": "fra",
         "639-2/B": "fre",
-        "639-5": "",
         "639-3": "fra",
         "Name(s)": "French"
     },
@@ -129,7 +128,6 @@ $ isogloss/isogloss.py -i zh-cmn-Hans-CN-pinyin-ud1-p9t4-x-private1
         "639-2/B": "chi",
         "639-2/T": "zho",
         "639-3": "zho",
-        "639-5": "",
         "Deprecated": false,
         "Name(s)": "Chinese",
         "Native name(s)": "\u4e2d\u6587 Zh\u014dngw\u00e9n; \u6c49\u8bed; \u6f22\u8a9e H\u00e0ny\u01d4",
@@ -143,7 +141,6 @@ $ isogloss/isogloss.py -i zh-cmn-Hans-CN-pinyin-ud1-p9t4-x-private1
             "639-2/B": "",
             "639-2/T": "",
             "639-3": "cmn",
-            "639-5": "",
             "Deprecated": false,
             "Name(s)": "Mandarin Chinese",
             "Native name(s)": "",
@@ -157,6 +154,66 @@ $ isogloss/isogloss.py -i zh-cmn-Hans-CN-pinyin-ud1-p9t4-x-private1
     "Variant": "pinyin",
     "Extension": "ud1-p9t4",
     "Private Use": "x-private1"
+}
+```
+
+```
+$ isogloss/isogloss.py -i ar-ajp-apc-apd-Arab-CV-arevela-g-231243-r-sdarre-x-private-x-private1 | jq
+{
+  "Primary Language": {
+    "639-1": "ar",
+    "639-2/B": "",
+    "639-2/T": "ara",
+    "639-3": "ara",
+    "Deprecated": false,
+    "Name(s)": "Arabic",
+    "Native name(s)": "العربية; al'Arabiyyeẗ",
+    "Other name(s)": "",
+    "Scope": "Macrolanguage",
+    "Type": "Living"
+  },
+  "Extended Languages": [
+    {
+      "639-1": "",
+      "639-2/B": "",
+      "639-2/T": "",
+      "Deprecated": true,
+      "Language Name(s)": "South Levantine Arabic",
+      "Language Type": "Living",
+      "Native name(s)": "",
+      "Other name(s)": "",
+      "Scope": "Individual"
+    },
+    {
+      "639-1": "",
+      "639-2/B": "",
+      "639-2/T": "",
+      "639-3": "apc",
+      "Deprecated": false,
+      "Name(s)": "Levantine Arabic",
+      "Native name(s)": "",
+      "Other name(s)": "",
+      "Scope": "Individual",
+      "Type": "Living"
+    },
+    {
+      "639-1": "",
+      "639-2/B": "",
+      "639-2/T": "",
+      "639-3": "apd",
+      "Deprecated": false,
+      "Name(s)": "Sudanese Arabic",
+      "Native name(s)": "",
+      "Other name(s)": "",
+      "Scope": "Individual",
+      "Type": "Living"
+    }
+  ],
+  "Script": "Arabic",
+  "Region": "Cabo Verde",
+  "Variant": "arevela",
+  "Extension": "g-231243-r-sdarre",
+  "Private Use": "x-private-x-private1"
 }
 ```
 
