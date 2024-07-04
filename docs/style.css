@@ -245,3 +245,55 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .footer {
+        padding: 10px;
+        font-size: 9px;
+    }
+
+    .dark-mode-button {
+        font-size: 9px;
+    }
+
+    .footer-content {
+        font-size: 9px;
+        gap: 5px;
+    }
+
+    .lookup-section, .definition, .result {
+        margin-bottom: 15px;
+    }
+
+    .word {
+        font-size: 24px;
+    }
+
+    .pronunciation, .pos, .definition-text, label, select {
+        font-size: 14px;
+    }
+
+    .lookup-section label, .lookup-section select {
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .lookup-section select {
+        width: 100%;
+    }
+
+    table, th, td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    th:first-child, td:first-child, th:last-child, td:last-child {
+        width: auto;
+    }
+}
