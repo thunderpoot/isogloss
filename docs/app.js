@@ -165,4 +165,21 @@ function loadPage() {
     fetchLatestCommit();
 }
 
+const toggleButton = document.getElementById('dark-mode-toggle');
+const darkModeText = `<span class="dark-mode-button">Dark mode</span>`;
+const lightModeText = `<span class="dark-mode-button">Light mode</span>`;
+toggleButton.innerHTML = darkModeText;
+
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.body.classList.add('dark-mode');
+    toggleButton.innerHTML = lightModeText;
+} else {
+    toggleButton.innerHTML = darkModeText;
+}
+
+toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    toggleButton.innerHTML = document.body.classList.contains('dark-mode') ? lightModeText : darkModeText;
+});
+
 window.onload = loadPage;
