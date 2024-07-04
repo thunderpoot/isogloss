@@ -121,11 +121,56 @@ $ isogloss/isogloss.py -i fr-FR
 }
 ```
 
+```
+$ isogloss/isogloss.py -i zh-cmn-Hans-CN-pinyin-ud1-p9t4-x-private1
+{
+    "Primary Language": {
+        "639-1": "zh",
+        "639-2/B": "chi",
+        "639-2/T": "zho",
+        "639-3": "zho",
+        "639-5": "",
+        "Deprecated": false,
+        "Name(s)": "Chinese",
+        "Native name(s)": "\u4e2d\u6587 Zh\u014dngw\u00e9n; \u6c49\u8bed; \u6f22\u8a9e H\u00e0ny\u01d4",
+        "Other name(s)": "",
+        "Scope": "Macrolanguage",
+        "Type": "Living"
+    },
+    "Extended Languages": [
+        {
+            "639-1": "",
+            "639-2/B": "",
+            "639-2/T": "",
+            "639-3": "cmn",
+            "639-5": "",
+            "Deprecated": false,
+            "Name(s)": "Mandarin Chinese",
+            "Native name(s)": "",
+            "Other name(s)": "",
+            "Scope": "Individual",
+            "Type": "Living"
+        }
+    ],
+    "Script": "Han (Simplified variant)",
+    "Region": "China",
+    "Variants": [
+        "pinyin",
+        "ud1",
+        "p9t4"
+    ],
+    "Private Use": [
+        "private1"
+    ]
+}
+```
+
 ## Files
 
 - `data/consolidated_langs.json`: Contains language data in JSON format used for the lookup.
-- `data/region_names.json`: Contains region data in JSON format used for the IETF tag lookup.
-- `data/deprecated-639-3.csv`: Contains deprecated ISO 639-3 codes in CSV format, for quick reference (not used in the code).
+- `data/region_names.json`: Contains region data in JSON format used for the BCP47 lookup.
+- `data/script_codes.json`: Contains script code data in JSON format used for the BCP47 lookup.
+- `data/deprecated-639-3.csv`: Contains deprecated ISO 639-3 codes in CSV format, for quick reference.
 
 ## Contributing
 
@@ -135,8 +180,21 @@ Contributions, issues, and feature requests are welcome!
 
 Written by T E Vaughan
 
-## Standards
-Language codes conform to the [ISO 639](https://www.iso.org/iso-639-language-code) standard (introduced in [RFC 4646](https://datatracker.ietf.org/doc/html/rfc4646.html)), and country codes conform to the [ISO 3166-1 alpha-2](https://www.iso.org/iso-3166-country-codes.html) standard (first defined in [RFC 1766](https://www.ietf.org/rfc/rfc1766.txt)).
+## Related Standards and RFCs
+
+The codes used in this program conform to the following ISO standards:
+
+### Standards
+
+- [ISO 639](https://www.iso.org/iso-639-language-code) Language codes
+- [ISO 3166-1 alpha-2](https://www.iso.org/iso-3166-country-codes.html) Country codes
+- [ISO 15924](https://www.unicode.org/iso15924/) Script codes
+
+### RFCs
+
+- [RFC 1766](https://www.ietf.org/rfc/rfc1766.txt) Tags for the Identification of Languages
+- [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) Tags for Identifying Languages
+- [RFC 4647](https://www.ietf.org/rfc/rfc4647.txt) Matching of Language Tags
 
 ## License
 
