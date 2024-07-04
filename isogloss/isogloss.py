@@ -7,6 +7,7 @@ Isogloss: A program to lookup languaes by ISO639 code or by IETF tag.
 import argparse
 import json
 import os
+import re
 
 from unidecode import unidecode
 
@@ -19,42 +20,91 @@ def load_json_data(file_name):
         return json.load(file)
 
 def parse_ietf_tag(tag):
-    """Parse an IETF language tag into its components."""
     components = tag.split('-')
-    return {
-        'language': components[0],
-        'region': components[1] if len(components) > 1 else None
+    result = {
+        'primaryLang': components[0],
+        'extLangs': [],
+        'script': None,
+        'region': None,
+        'variants': [],
+        'extensions': [],
+        'private_use': []
     }
+    idx = 1
+
+    # Extended language subtags
+    while idx < len(components) and len(components[idx]) == 3:
+        result['extLangs'].append(components[idx])
+        idx += 1
+
+    # Script
+    if idx < len(components) and len(components[idx]) == 4 and components[idx].isalpha():
+        result['script'] = components[idx]
+        idx += 1
+
+    # Region
+    if idx < len(components) and (len(components[idx]) == 2 or components[idx].isdigit()):
+        result['region'] = components[idx]
+        idx += 1
+
+    # Variants and extensions
+    while idx < len(components):
+        if components[idx].startswith('x'):
+            result['private_use'] = components[idx+1:]
+            break
+        elif components[idx].startswith('r') or components[idx].startswith('g'):
+            result['extensions'].append(components[idx])
+        else:
+            result['variants'].append(components[idx])
+        idx += 1
+
+    return result
 
 def is_valid_ietf_tag(tag):
-    """Validate IETF tag format"""
-    if '-' not in tag:
-        return False, "Invalid IETF tag format"
+    pattern = re.compile(
+        r'^([a-z]{2,3})'                       # ISO 639 language code
+        r'(-[A-Z][a-z]{3})?'                   # ISO 15924 script code (optional)
+        r'(-([A-Z]{2}|\d{3}))?'                # ISO 3166 region or UN M.49 (optional)
+        r'(-[a-zA-Z0-9]+)*'                    # Variants (optional)
+        r'(-x(-[a-zA-Z0-9]+)+)?$',             # Private use (optional, starts with 'x-')
+        re.IGNORECASE                          # Case insensitive matching
+    )
+    return pattern.match(tag) is not None, "Tag validation failed."
 
-    language, _, region = tag.partition('-')
-    if len(language) != 2 or not language.isalpha():
-        return False, "Invalid language code in IETF tag: must be a two-character ISO 639-1 code"
+def lookup_script_by_code(code, data):
+    return data.get(code, 'Unknown Script')
 
-    if region and (len(region) != 2 or not region.isalpha()):
-        return False, "Invalid region code in IETF tag: must be a two-character ISO 3166-1 alpha-2 region code"
-
-    return True, "Valid IETF tag."
-
-def lookup_ietf_locale(tag, lang_data, region_data):
-    """Look up the meaning of each component in an IETF locale tag."""
+def lookup_ietf_locale(tag, lang_data, region_data, script_data):
     parsed_tag = parse_ietf_tag(tag)
     results = {}
 
-    # Language lookup
-    language = parsed_tag['language']
+    # Primary Language
+    language = parsed_tag['primaryLang']
     language_details = lookup_language_by_code(language, lang_data)
-    results['Language'] = language_details if language_details else 'Unknown Language'
+    results['Primary Language'] = language_details if language_details else 'Unknown Language'
 
-    # Region lookup
+    # Extended Languages
+    if parsed_tag['extLangs']:
+        results['Extended Languages'] = [lookup_language_by_code(extLang, lang_data) for extLang in parsed_tag['extLangs']]
+
+    # Script
+    if parsed_tag['script']:
+        script_details = lookup_script_by_code(parsed_tag['script'], script_data)
+        results['Script'] = script_details if script_details else 'Unknown Script'
+
+    # Region
     if parsed_tag['region']:
         region = parsed_tag['region']
         region_name = region_data.get(region.upper(), 'Unknown Region')
         results['Region'] = region_name
+
+    # Variants and extensions
+    if parsed_tag['variants']:
+        results['Variants'] = parsed_tag['variants']
+    if parsed_tag['extensions']:
+        results['Extensions'] = parsed_tag['extensions']
+    if parsed_tag['private_use']:
+        results['Private Use'] = parsed_tag['private_use']
 
     return results
 
@@ -101,13 +151,14 @@ def main():
     args = parser.parse_args()
     language_data = load_json_data('consolidated_langs.json')
     region_data = load_json_data('region_names.json')
+    script_data = load_json_data('script_codes.json')
 
     if args.ietf:
         valid_tag, message = is_valid_ietf_tag(args.ietf)
         if not valid_tag:
             print(json.dumps({"Error": message}, indent=4))
         else:
-            results = lookup_ietf_locale(args.ietf, language_data, region_data)
+            results = lookup_ietf_locale(args.ietf, language_data, region_data, script_data)
             print(json.dumps(results, indent=4))
     elif args.code:
         result = lookup_language_by_code(args.code, language_data)
