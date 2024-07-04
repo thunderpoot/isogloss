@@ -166,8 +166,8 @@ function loadPage() {
 }
 
 const toggleButton = document.getElementById('dark-mode-toggle');
-const darkModeText = `<span class="dark-mode-button">Dark mode</span>`;
-const lightModeText = `<span class="dark-mode-button">Light mode</span>`;
+const darkModeText = `<span class="dark-mode-button">Dark</span>`;
+const lightModeText = `<span class="dark-mode-button">Light</span>`;
 toggleButton.innerHTML = darkModeText;
 
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
