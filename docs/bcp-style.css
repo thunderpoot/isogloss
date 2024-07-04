@@ -1,0 +1,69 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%;
+}
+
+input {
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
+#highlightedInput {
+    margin: 10px 0;
+    font-size: 20px;
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 5px;
+    text-align: left;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#result {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.section {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.primary-language { background-color: #ffebcd; }
+.extended-language { background-color: #e6e6fa; }
+.script { background-color: #d3ffd3; }
+.region { background-color: #ffe4e1; }
+.variant { background-color: #e0ffff; }
+.extension { background-color: #fafad2; }
+.private-use { background-color: #ffe4b5; }
