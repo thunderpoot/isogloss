@@ -17,7 +17,7 @@ There is also a [web–based version here](https://thunderpoot.github.io/isoglos
 
 - Lookup language details using ISO 639-1, 639-2/B, 639-2/T, or 639-3 codes.
 - Lookup language details by language name.
-- Lookup language details using IETF BCP-47 language tags (e.g., en-GB, en-US, sv-SE).
+- Lookup language details using IETF BCP-47 language tags (e.g., en-GB, en-US, sv-SE, zh-cmn-Hans-CN-pinyin-ud1-p9t4-x-private1 and so on).
 
 ## Installation
 
@@ -154,14 +154,9 @@ $ isogloss/isogloss.py -i zh-cmn-Hans-CN-pinyin-ud1-p9t4-x-private1
     ],
     "Script": "Han (Simplified variant)",
     "Region": "China",
-    "Variants": [
-        "pinyin",
-        "ud1",
-        "p9t4"
-    ],
-    "Private Use": [
-        "private1"
-    ]
+    "Variant": "pinyin",
+    "Extension": "ud1-p9t4",
+    "Private Use": "x-private1"
 }
 ```
 
