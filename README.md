@@ -175,6 +175,12 @@ Contributions, issues, and feature requests are welcome!
 
 Written by T E Vaughan
 
+## Sponsorship
+
+[![Github-sponsors](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#EA4AAA)](https://github.com/sponsors/thunderpoot)
+
+If you find this project useful, please consider sponsoring my work. <3
+
 ## Related Standards and RFCs
 
 The codes used in this program conform to the following ISO standards:
