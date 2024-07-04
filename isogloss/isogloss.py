@@ -34,7 +34,6 @@ def parse_ietf_tag(tag, language_data):
 
     # Extended language subtags
     while idx < len(components) and len(components[idx]) == 3:
-        # result['extLangs'].append(components[idx])
         result['extLangs'].append(lookup_language_by_code(components[idx].lower(), language_data))
         idx += 1
 
@@ -97,7 +96,6 @@ def lookup_ietf_locale(tag, language_data, region_data, script_data):
     if parsed_tag['region']:
         region_name = region_data.get(parsed_tag['region'].upper(), 'Unknown Region')
         result['Region'] = region_name
-        # result['Region'] = parsed_tag['region']
     if parsed_tag['variant']:
         result['Variant'] = parsed_tag['variant']
     if parsed_tag['extension']:
