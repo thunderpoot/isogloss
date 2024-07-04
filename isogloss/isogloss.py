@@ -19,22 +19,23 @@ def load_json_data(file_name):
     with open(file_path, 'r', encoding='utf-8') as file:
         return json.load(file)
 
-def parse_ietf_tag(tag):
+def parse_ietf_tag(tag, language_data):
     components = tag.split('-')
     result = {
         'primaryLang': components[0],
         'extLangs': [],
         'script': None,
         'region': None,
-        'variants': [],
-        'extensions': [],
-        'private_use': []
+        'variant': None,
+        'extension': None,
+        'private': None
     }
     idx = 1
 
     # Extended language subtags
     while idx < len(components) and len(components[idx]) == 3:
-        result['extLangs'].append(components[idx])
+        # result['extLangs'].append(components[idx])
+        result['extLangs'].append(lookup_language_by_code(components[idx].lower(), language_data))
         idx += 1
 
     # Script
@@ -48,15 +49,23 @@ def parse_ietf_tag(tag):
         idx += 1
 
     # Variants and extensions
+    variant_list = []
+    extension_list = []
     while idx < len(components):
         if components[idx].startswith('x'):
-            result['private_use'] = components[idx+1:]
+            result['private'] = '-'.join(components[idx:])
             break
         elif components[idx].startswith('r') or components[idx].startswith('g'):
-            result['extensions'].append(components[idx])
+            extension_list.append(components[idx])
         else:
-            result['variants'].append(components[idx])
+            if result['variant'] is None:
+                result['variant'] = components[idx]
+            else:
+                extension_list.append(components[idx])
         idx += 1
+
+    if extension_list:
+        result['extension'] = '-'.join(extension_list)
 
     return result
 
@@ -74,39 +83,29 @@ def is_valid_ietf_tag(tag):
 def lookup_script_by_code(code, data):
     return data.get(code, 'Unknown Script')
 
-def lookup_ietf_locale(tag, lang_data, region_data, script_data):
-    parsed_tag = parse_ietf_tag(tag)
-    results = {}
+def lookup_ietf_locale(tag, language_data, region_data, script_data):
+    parsed_tag = parse_ietf_tag(tag, language_data)
 
-    # Primary Language
-    language = parsed_tag['primaryLang']
-    language_details = lookup_language_by_code(language, lang_data)
-    results['Primary Language'] = language_details if language_details else 'Unknown Language'
+    result = {
+        'Primary Language': lookup_language_by_code(parsed_tag['primaryLang'].lower(), language_data)
+    }
 
-    # Extended Languages
     if parsed_tag['extLangs']:
-        results['Extended Languages'] = [lookup_language_by_code(extLang, lang_data) for extLang in parsed_tag['extLangs']]
-
-    # Script
+        result['Extended Languages'] = parsed_tag['extLangs']
     if parsed_tag['script']:
-        script_details = lookup_script_by_code(parsed_tag['script'], script_data)
-        results['Script'] = script_details if script_details else 'Unknown Script'
-
-    # Region
+        result['Script'] = lookup_script_by_code(parsed_tag['script'], script_data)
     if parsed_tag['region']:
-        region = parsed_tag['region']
-        region_name = region_data.get(region.upper(), 'Unknown Region')
-        results['Region'] = region_name
+        region_name = region_data.get(parsed_tag['region'].upper(), 'Unknown Region')
+        result['Region'] = region_name
+        # result['Region'] = parsed_tag['region']
+    if parsed_tag['variant']:
+        result['Variant'] = parsed_tag['variant']
+    if parsed_tag['extension']:
+        result['Extension'] = parsed_tag['extension']
+    if parsed_tag['private']:
+        result['Private Use'] = parsed_tag['private']
 
-    # Variants and extensions
-    if parsed_tag['variants']:
-        results['Variants'] = parsed_tag['variants']
-    if parsed_tag['extensions']:
-        results['Extensions'] = parsed_tag['extensions']
-    if parsed_tag['private_use']:
-        results['Private Use'] = parsed_tag['private_use']
-
-    return results
+    return result
 
 def search_in_dictionary(search_term, data):
     """Search for 'search_term' in 'data' dictionary."""
