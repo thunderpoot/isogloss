@@ -35,10 +35,13 @@ body.dark-mode .container {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
+body.dark-mode .footer-content {
+    background-color: var(--dark-container-bg);
+}
+
 body.dark-mode .footer {
     background-color: var(--dark-container-bg);
     color: var(--dark-text);
-    border-top: 1px solid var(--dark-border);
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -61,7 +64,7 @@ body.dark-mode td {
 }
 
 body.dark-mode div {
-    background-color: var(--dark-container-bg);
+    background-color: var(--dark-table-bg);
     color: var(--dark-text);
 }
 
@@ -91,20 +94,20 @@ body.dark-mode .lookup-section {
 body.dark-mode .result {
     background-color: var(--dark-container-bg);
     color: var(--dark-text);
-    border: 1px solid var(--dark-border);
 }
 
 body.dark-mode .definition {
-    background-color: var(--dark-container-bg);
+    background-color: var(--dark-table-bg);
     color: var(--dark-text);
-    border: 1px solid var(--dark-border);
 }
 
 body.dark-mode .pronunciation, body.dark-mode .pos {
+    background-color: var(--dark-table-bg);
     color: var(--dark-text);
 }
 
 body.dark-mode .definition-text {
+    background-color: var(--dark-table-bg);
     color: var(--dark-text);
 }
 
@@ -112,7 +115,6 @@ body.dark-mode .definition-text {
     max-width: 800px;
     margin: auto;
     background: var(--light-container-bg);
-    border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-bottom: 50px;
@@ -134,14 +136,13 @@ body.dark-mode .definition-text {
 
 table {
     width: 100%;
+    border-collapse: collapse;
     background-color: var(--light-container-bg);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px !important;
-    border: 1px solid var(--light-border);
 }
 
-th, td {
-    border-collapse: collapse;
+table, th, td {
+    border: 0px solid var(--light-border);
 }
 
 th, td {
@@ -167,10 +168,8 @@ th:last-child, td:last-child {
 }
 
 .definition {
-    border: 1px solid var(--light-border);
     padding: 20px;
     margin-bottom: 20px;
-    border-radius: 8px;
     background-color: var(--light-container-bg);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -215,14 +214,11 @@ select {
 .footer {
     max-width: 800px;
     margin: auto;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     background-color: var(--light-container-bg);
-    border-top: 1px solid var(--light-border);
     margin-top: 20px;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
     position: fixed;
