@@ -232,8 +232,8 @@ button:hover {
     gap: 5px;
 }
 
-.warning { color: #b44545; }
-body.dark-mode .warning { color: #e87474; }
+.warning { color: #b49f45; }
+body.dark-mode .warning { color: #e8d974; }
 
 .primary-language {
     background-color: var(--primary-color);

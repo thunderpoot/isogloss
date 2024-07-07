@@ -9,7 +9,7 @@
 
 `isogloss` is a Python–based command–line tool designed for looking up language details based on [ISO 639](https://www.iso.org/iso-639-language-code) codes and IETF ([BCP-47](https://www.rfc-editor.org/info/bcp47)) language tags. It provides comprehensive information about languages, including their names, native names, and additional details associated with each code or tag.
 
-There is also a [web–based version here](https://thunderpoot.github.io/isogloss).
+There is also a [web–based version here](https://thunderpoot.github.io/isogloss).  The [BCP47 parser](https://thunderpoot.github.io/isogloss/bcp-index.html) has some known issues, documented below in the "Errata" section.
 
 Elsewhere, [the word isogloss](https://en.wikipedia.org/wiki/Isogloss) means a boundary line on a map denoting the regional use of a particular linguistic characteristic, but in this case it just seemed to fit.
 
@@ -223,6 +223,61 @@ $ isogloss/isogloss.py -i ar-ajp-apc-apd-Arab-CV-arevela-g-231243-r-sdarre-x-pri
 - `data/region_names.json`: Contains region data in JSON format used for the BCP47 lookup.
 - `data/script_codes.json`: Contains script code data in JSON format used for the BCP47 lookup.
 - `data/deprecated-639-3.csv`: Contains deprecated ISO 639-3 codes in CSV format, for quick reference.
+
+## Errata
+
+There are known issues with the BCP47 parser in the web interface.  It uses regular expressions to validate input, such that:
+
+### Examples of valid tags:
+
+- `en`
+
+- `fr-CA`
+
+- `i-klingon`
+
+- `az-Arab-IR`
+
+- `sr-Cyrl-RS`
+
+- `zh-cmn-Hans`
+
+- `ja-JP-x-tokyo`
+
+- `uz-Cyrl-UZ-1992`
+
+- `bo-Tibt-x-dialect`
+
+- `zh-cmn-Hans-CN-x-private1`
+
+- `hy-Latn-IT-arevela-x-test`
+
+
+### Examples of invalid tags (malformed):
+
+- `en-GB-oed-x-private`
+
+- `de-CH-1901-co-phonebk-sc-gothic-x-bavaria`
+
+(and more)
+
+### Examples of inputs that reveal parsing bugs:
+
+- `ca-valencia-nedis`
+    (Highlighted input section is missing "valencia")
+
+- `en-US-u-islamcal`
+    (Variant "u" and Extension "islamcal", Extension section says "u - islamcal")
+
+- `es-419-fonipa`
+    (Extended languages blank)
+
+- `de-Latf-1901`
+    (Region undefined)
+
+- `sl-rozaj`
+    (rozaj is coloured differently in the result container to how it is in the highlighted input section)
+
 
 ## Contributing
 

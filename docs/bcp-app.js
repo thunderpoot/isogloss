@@ -78,8 +78,8 @@ function parseIetfTag(tag) {
         extLangs: [],
         script: null,
         region: null,
-        variant: null,
-        extension: null,
+        variants: [],
+        extensions: [],
         private: null
     };
     let idx = 1;
@@ -103,26 +103,17 @@ function parseIetfTag(tag) {
     }
 
     // Variants and extensions
-    const variantList = [];
-    const extensionList = [];
     while (idx < components.length) {
         if (components[idx].startsWith('x')) {
             result.private = components.slice(idx).join('-');
             break;
-        } else if (components[idx].startsWith('r') || components[idx].startsWith('g')) {
-            extensionList.push(components[idx]);
+        } else if (/^[a-wy-z0-9]$/.test(components[idx])) {
+            result.extensions.push(components[idx] + '-' + components[idx + 1]);
+            idx += 2;
         } else {
-            if (!result.variant) {
-                result.variant = components[idx];
-            } else {
-                extensionList.push(components[idx]);
-            }
+            result.variants.push(components[idx]);
+            idx += 1;
         }
-        idx += 1;
-    }
-
-    if (extensionList.length > 0) {
-        result.extension = extensionList.join('-');
     }
 
     return result;
@@ -258,14 +249,16 @@ function processTag() {
     if (parsedTag.region) {
         html += `<div class="section region"><strong>Region:</strong> ${regionData[parsedTag.region]}</div>`;
     }
-    // Process Variant
-    if (parsedTag.variant) {
-        html += `<div class="section variant"><strong>Variant:</strong> ${parsedTag.variant}</div>`;
+    // Process Variants
+    if (parsedTag.variants.length > 0) {
+        const variantsHtml = parsedTag.variants.map(variant => `<li>${variant}</li>`).join('');
+        html += `<div class="section variant"><strong>Variants:</strong> <ul>${variantsHtml}</ul></div>`;
     }
 
-    // Process Extension
-    if (parsedTag.extension) {
-        html += `<div class="section extension"><strong>Extension:</strong> ${parsedTag.extension}</div>`;
+    // Process Extensions
+    if (parsedTag.extensions.length > 0) {
+        const extensionsHtml = parsedTag.extensions.map(extension => `<li>${extension}</li>`).join('');
+        html += `<div class="section extension"><strong>Extensions:</strong> <ul>${extensionsHtml}</ul></div>`;
     }
 
     // Process Private Use
@@ -292,7 +285,7 @@ async function fetchLanguages() {
 
 function loadPage() {
     fetchLanguages();
-    // fetchLatestCommit();
+    fetchLatestCommit();
 }
 
 window.onload = loadPage;
