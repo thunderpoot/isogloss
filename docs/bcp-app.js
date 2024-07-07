@@ -271,9 +271,9 @@ function processTag() {
 
 async function fetchLanguages() {
     Promise.all([
-        fetch('../docs/consolidated_langs.json').then(response => response.json()),
-        fetch('../data/script_codes.json').then(response => response.json()),
-        fetch('../data/region_names.json').then(response => response.json())
+        fetch('consolidated_langs.json').then(response => response.json()),
+        fetch('script_codes.json').then(response => response.json()),
+        fetch('region_names.json').then(response => response.json())
     ])
     .then(([langs, scripts, regions]) => {
         languageData = langs;
