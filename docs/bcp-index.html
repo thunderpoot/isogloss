@@ -8,10 +8,21 @@
 </head>
 <body>
     <div class="container">
-        <h1>🌐 iso·gloss: BCP47 Parser</h1>
-        <input type="text" id="bcp47Input" placeholder="Enter BCP47 Language Tag (e.g. zh-cmn-Hans-CN-pinyin-ud1-p9t4-x-private1)" oninput="processTag()">
+        <h1>🌐 iso·gloss</h1>
+        <h2>BCP47 Parser</h2>
+        <input spellcheck="false" type="text" id="bcp47Input" placeholder="Enter BCP47 Language Tag (e.g. zh-cmn-Hans-CN-x-private1)" oninput="processTag()">
         <div id="highlightedInput"></div>
         <div id="result"></div>
+        <footer class="footer">
+            <div class="footer-content">
+                &copy; 2024 T E Vaughan |
+                <a rel="nofollow" id="commit-link" class="commit-link" target="_blank"><span id="commit-hash"></span></a> |
+                <span><a rel="nofollow" href="https://github.com/thunderpoot/isogloss?tab=MIT-1-ov-file#readme" target="_blank">Licence</a></span> |
+                <span><a rel="nofollow" href="https://www.iso.org/iso-639-language-code" target="_blank">ISO</a></span> |
+                <span><a rel="nofollow" href="https://sil.org/" target="_blank">SIL</a></span> |
+                <span id="dark-mode-toggle" class="dark-mode-toggle" onclick="toggleDarkMode()">Dark</span>
+            </div>
+        </footer>
     </div>
     <script src="bcp-app.js"></script>
 </body>
